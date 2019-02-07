@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.scit.Chating.DAO.RoomMapper"> <!-- 인터페이스의 경로 -->
+	<insert id="insertRoom" parameterType="Room">
+		INSERT INTO ROOM
+		(
+			ROOMSEQ
+			 ,USERID
+			  ,NAME
+			   ,INDATE
+		)
+		VALUES
+		(
+			ROOMSEQ.NEXTVAL
+			 ,#{userId}
+			  ,#{name}
+			   ,sysdate
+		)
+	</insert>
+	
+	<select id="chattingRoomListAll" resultType="Room">
+		SELECT
+			ROOMSEQ
+			 ,USERID
+			  ,NAME
+			   ,INDATE
+		FROM
+			ROOM
+		ORDER BY INDATE DESC
+	</select>
+	
+	<!-- 채팅방 입장 -->
+	<select id="entrance" parameterType="String" resultType="Room">
+		SELECT
+			ROOMSEQ
+			 ,USERID
+			  ,NAME
+			   ,INDATE
+		FROM
+			ROOM
+		WHERE
+			ROOMSEQ=#{roomSeq}
+	</select>
+	
+	<insert id="insertMessage" parameterType="Chat">
+		INSERT INTO CHAT
+		(
+			 CHATSEQ
+     		 ,ROOMSEQ
+      		  ,USERID
+       		   ,MESSAGE
+        	    ,INDATE
+		)
+		VALUES
+		(
+			CHATSEQ.NEXTVAL
+			 ,#{roomSeq}
+			  ,#{userId}
+			   ,#{message}
+			    ,sysdate
+		)
+	</insert>
+	
+	<select id="chattingList" parameterType="String" resultType="Chat">
+		SELECT
+			CHATSEQ
+			 ,ROOMSEQ
+			  ,USERID
+			   ,MESSAGE
+			    ,INDATE
+		FROM
+			CHAT
+		WHERE
+			ROOMSEQ=#{roomSeq}
+	</select>
+</mapper>

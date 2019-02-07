@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원 처리 SQL -->
+<mapper namespace="com.scit.Chating.DAO.MemberMapper"> <!-- 인터페이스의 경로 -->
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="Hmap">
+		INSERT INTO USERTABLE
+		(
+			USERID
+			 ,USERPW
+		)
+		VALUES
+		(
+			#{userId}
+			 ,#{userPw}
+		)
+	</insert>
+	<!-- 로그인 -->
+	<select id="login" parameterType="Hmap" resultType="Hmap">
+		SELECT
+			USERID
+			 ,USERPW
+		FROM
+			USERTABLE
+		WHERE
+			USERID=#{userId}
+				AND
+			USERPW=#{userPw}
+	</select>
+</mapper>
+   
