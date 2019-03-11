@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.Chating.DAO.RoomDAO;
 import com.scit.Chating.VO.Chat;
@@ -29,7 +30,7 @@ public class RoomController {
 	@RequestMapping(value="/makeRoom", method=RequestMethod.POST)
 	public String makeRoom(Room room, HttpSession session,Model model) {
 		int result = 0;
-		result = dao.insertRoom(room,model);
+		result = dao.insertRoom(room);
 		if(result == 0) {
 			return "chattingList";
 		}
@@ -68,5 +69,9 @@ public class RoomController {
 		model.addAttribute("cList",list);
 	}
 	
-	
+	@RequestMapping(value="/selectChat", method=RequestMethod.GET)
+	public @ResponseBody ArrayList<Chat> selectChatt(String roomSeq) {
+		ArrayList<Chat> chatList = dao.chattingList(roomSeq);
+		return chatList;
+	}
 }

@@ -6,14 +6,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function check(){
-		document.getElementById("insertMessageForm").submit();
-	}
+function check(){
+	document.getElementById("insertMessageForm").submit();
+}
+setInterval(
+function ajaxTest(){
+	$.ajax({
+			url : "selectChat",
+			data : {roomSeq : ${room.roomSeq}},
+			type : "get",
+			success : function(data){
+				var context="";
+				
+				document.getElementById("contents").innerHTML=context
+			}
+			
+	});
+}
+)
 </script>
 </head>
 <body>
 	<h1>${room.name}</h1>
+	<button onclick="ajaxTest()">ajaxTest</button>
+	<div id="contents"></div>
 	<hr>
 		<table>
 			<c:forEach var="cList" items="${cList}">

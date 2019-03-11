@@ -75,5 +75,9 @@
 			CHAT
 		WHERE
 			ROOMSEQ=#{roomSeq}
+		ORDER BY
+			INDATE ASC
 	</select>
+	
+	
 </mapper>

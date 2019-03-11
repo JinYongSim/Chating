@@ -164,6 +164,20 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.2</version>
 		</dependency>
+		
+		<!-- //클라이언트가 요청할때->JAVA객체 -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+    		<version>2.5.2</version>
+		</dependency>
+
+		<!-- //객체로 응답할때 ->JSON객체 -->
+		<dependency>
+ 			<groupId>org.codehaus.jackson</groupId> 
+			<artifactId>jackson-mapper-asl</artifactId> 
+			<version>1.9.13</version> 
+		</dependency>
 		        
 	</dependencies>
     <build>

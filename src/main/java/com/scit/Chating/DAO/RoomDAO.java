@@ -15,7 +15,7 @@ public class RoomDAO {
 	@Autowired
 	SqlSession sqlSession;
 	// 채팅방 만들기
-	public int insertRoom(Room room,Model model) {
+	public int insertRoom(Room room) {
 		int result = 0;
 		RoomMapper mapper = sqlSession.getMapper(RoomMapper.class);
 		try {
